@@ -11,7 +11,13 @@ app.get('/', async (_, res) => {
     method: 'get',
     url: 'https://www.qnbfinansbank.enpara.com/hesaplar/doviz-ve-altin-kurlari'
   });
-  const getColumns = (x, y) => parseFloat(htmlParser.parse(html.data).querySelector('div.enpara-gold-exchange-rates__table').childNodes[x].childNodes[y].structuredText.match('\\d+,\\d+')[0].replace(',', '.'))
+  const getColumns = (x, y) => parseFloat(
+    htmlParser.parse(html.data)
+      .querySelector('div.enpara-gold-exchange-rates__table')
+      .childNodes[x].childNodes[y]
+      .structuredText.match('\\d+,\\d+')[0]
+      .replace(',', '.')
+  )
 
 
   res.status(200).json({
